@@ -49,3 +49,10 @@ message = """this is an example of a caesar cipher."""
 
 print(caesar_encode("hey there! i got your message. here is mine."))
 print(caesar_encode(message, 10))
+
+message = """this is 
+an example of a caesar 
+            cipher.hey there"""
+
+print(caesar_encode("hey there! i got your message. here is mine.",10))
+print(caesar_encode(message,14))

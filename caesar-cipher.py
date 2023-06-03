@@ -3,7 +3,7 @@ def caesar_decode(encoded_message, offset):
     decoded_words = []
     
     alphabet = "abcdefghijklmnopqrstuvwxyz"
-    punctuation = ".,!? "
+    punctuation = ".,!?' "
     
     for word in encoded_words:
         decoded_letters = []
@@ -25,7 +25,7 @@ def caesar_encode(message, offset):
     encoded_words = []
     
     alphabet = "abcdefghijklmnopqrstuvwxyz"
-    punctuation = ".,!? "
+    punctuation = ".,!?' "
     
     for word in message_words:
         encoded_letters = []

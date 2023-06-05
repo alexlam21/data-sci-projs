@@ -160,3 +160,52 @@ def createMortalityDict(hurricanes):
 # categorize hurricanes in new dictionary with mortality severity as key
 mortality_scale = createMortalityDict(hurricanes)
 print(mortality_scale[5])
+
+# 8
+# Calculating Hurricane Maximum Damage
+def getCostliestHurricane(hurricanes):
+    max_cost = 0
+    hurricane_name = ""
+    for cane in hurricanes:
+        if hurricanes[cane]["Damage"] == 'Damages not recorded':
+            continue
+        else:
+            if hurricanes[cane]["Damage"] > max_cost:
+                max_cost = hurricanes[cane]["Damage"]
+                hurricane_name = hurricanes[cane]["Name"]
+    return hurricane_name, max_cost
+# find highest damage inducing hurricane and its total cost
+name, damage = getCostliestHurricane(hurricanes)
+print("Hurricane {hurricane_name} was the most destructive hurricane. Costing ${amount} in damages!".format(hurricane_name = name, amount = damage))
+
+# 9
+# Rating Hurricanes by Damage
+def categorize_by_damage(hurricanes):
+    """Categorize hurricanes by damage and return a dictionary."""
+    damage_scale = {0: 0,
+                    1: 100000000,
+                    2: 1000000000,
+                    3: 10000000000,
+                    4: 50000000000}
+    hurricanes_by_damage = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[]}
+    for cane in hurricanes:
+        total_damage = hurricanes[cane]['Damage']
+        if total_damage == "Damages not recorded":
+            hurricanes_by_damage[0].append(hurricanes[cane])
+        elif total_damage == damage_scale[0]:
+            hurricanes_by_damage[0].append(hurricanes[cane])
+        elif total_damage > damage_scale[0] and total_damage <= damage_scale[1]:
+            hurricanes_by_damage[1].append(hurricanes[cane])
+        elif total_damage > damage_scale[1] and total_damage <= damage_scale[2]:
+            hurricanes_by_damage[2].append(hurricanes[cane])
+        elif total_damage > damage_scale[2] and total_damage <= damage_scale[3]:
+            hurricanes_by_damage[3].append(hurricanes[cane])
+        elif total_damage > damage_scale[3] and total_damage <= damage_scale[4]:
+            hurricanes_by_damage[4].append(hurricanes[cane])
+        elif total_damage > damage_scale[4]:
+            hurricanes_by_damage[5].append(hurricanes[cane])
+    return hurricanes_by_damage
+
+# categorize hurricanes in new dictionary with damage severity as key
+hurricanes_by_damage = categorize_by_damage(hurricanes)
+print(hurricanes_by_damage[5])

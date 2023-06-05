@@ -124,3 +124,39 @@ def getMaxHurricaneAreaCount(areaDict):
 area, amount_struck = getMaxHurricaneAreaCount(affected_area_count)
 
 print("{area_name} has been struck {amount} times by hurricanes! The largest amount of any other area!".format(area_name = area, amount = amount_struck))
+
+# 6
+# Calculating the Deadliest Hurricane
+def getDeadliestHurricane(hurricanes):
+    hurricane_name = ""
+    max_deaths = 0
+    for cane in hurricanes:
+        if hurricanes[cane]["Deaths"] > max_deaths:
+            max_deaths = hurricanes[cane]["Deaths"]
+            hurricane_name = hurricanes[cane]["Name"]
+    return hurricane_name, max_deaths
+# find highest mortality hurricane and the number of deaths
+hurricane_name, mortality = getDeadliestHurricane(hurricanes)
+print("Hurricane {hurricane_name} was the deadliest hurricane. {amount_dead} individuals died".format(hurricane_name = hurricane_name, amount_dead = mortality))
+
+# 7
+# Rating Hurricanes by Mortality
+def createMortalityDict(hurricanes):
+    mortalityDict = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[]}
+    for cane in hurricanes:
+        if hurricanes[cane]["Deaths"] == 0:
+            mortalityDict[0].append(hurricanes[cane])
+        elif hurricanes[cane]["Deaths"] > 0 and hurricanes[cane]["Deaths"] <= 100:
+            mortalityDict[1].append(hurricanes[cane])
+        elif hurricanes[cane]["Deaths"] > 100 and hurricanes[cane]["Deaths"] <= 500:
+            mortalityDict[2].append(hurricanes[cane])
+        elif hurricanes[cane]["Deaths"] > 500 and hurricanes[cane]["Deaths"] <= 1000:
+            mortalityDict[3].append(hurricanes[cane])
+        elif hurricanes[cane]["Deaths"] > 1000 and hurricanes[cane]["Deaths"] <= 10000:
+            mortalityDict[4].append(hurricanes[cane])
+        else:
+            mortalityDict[5].append(hurricanes[cane])
+    return mortalityDict
+# categorize hurricanes in new dictionary with mortality severity as key
+mortality_scale = createMortalityDict(hurricanes)
+print(mortality_scale[5])

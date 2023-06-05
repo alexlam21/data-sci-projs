@@ -108,4 +108,19 @@ def createAreaCountDictionary(hurricanes):
 
 
 # create dictionary of areas to store the number of hurricanes involved in
-affected_area_count = createAreaCountDictionary(hurricanes)   
+affected_area_count = createAreaCountDictionary(hurricanes)
+
+# 5
+# Calculating Maximum Hurricane Count
+def getMaxHurricaneAreaCount(areaDict):
+    current_max = 0
+    current_area = ""
+    for area in areaDict:
+        if areaDict[area] > current_max:
+            current_area = area
+            current_max = areaDict[area]
+    return current_area, current_max
+# find most frequently affected area and the number of hurricanes involved in
+area, amount_struck = getMaxHurricaneAreaCount(affected_area_count)
+
+print("{area_name} has been struck {amount} times by hurricanes! The largest amount of any other area!".format(area_name = area, amount = amount_struck))

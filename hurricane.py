@@ -93,3 +93,19 @@ def createYearlyDictionary(hurricanes_by_name):
 hurricanes_by_year = createYearlyDictionary(hurricanes)
 
 print(hurricanes_by_year[1932])
+
+# 4
+# Counting Damaged Areas
+def createAreaCountDictionary(hurricanes):
+    areaDict = {}
+    for cane in hurricanes:
+        for area in hurricanes[cane]['Areas Affected']:
+            if area not in areaDict:
+                areaDict[area] = 1
+            else:
+                areaDict[area] += 1
+    return areaDict
+
+
+# create dictionary of areas to store the number of hurricanes involved in
+affected_area_count = createAreaCountDictionary(hurricanes)   
